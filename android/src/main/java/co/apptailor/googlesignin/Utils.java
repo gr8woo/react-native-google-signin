@@ -1,7 +1,6 @@
 package co.apptailor.googlesignin;
 
 import android.net.Uri;
-import android.support.annotation.NonNull;
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.ReadableArray;
@@ -26,7 +25,7 @@ public class Utils {
     }
 
 
-    static WritableMap getUserProperties(@NonNull GoogleSignInAccount acct) {
+    static WritableMap getUserProperties(GoogleSignInAccount acct) {
         Uri photoUrl = acct.getPhotoUrl();
 
         WritableMap user = Arguments.createMap();
@@ -78,7 +77,6 @@ public class Utils {
         return googleSignInOptionsBuilder.build();
     }
 
-    @NonNull
     static Scope[] createScopesArray(ReadableArray scopes) {
         int size = scopes.size();
         Scope[] _scopes = new Scope[size];
@@ -90,7 +88,7 @@ public class Utils {
         return _scopes;
     }
 
-    public static int getExceptionCode(@NonNull Task<Void> task) {
+    public static int getExceptionCode(Task<Void> task) {
         Exception e = task.getException();
 
         if (e instanceof ApiException) {
