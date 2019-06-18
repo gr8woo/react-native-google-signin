@@ -4,8 +4,6 @@ import android.accounts.Account;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.util.Log;
 
 import com.facebook.react.bridge.Arguments;
@@ -237,13 +235,13 @@ public class RNGoogleSigninModule extends ReactContextBaseJavaModule {
         _apiClient.signOut()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
+                    public void onComplete(Task<Void> task) {
                         handleSignOutOrRevokeAccessTask(task, promise);
                     }
                 });
     }
 
-    private void handleSignOutOrRevokeAccessTask(@NonNull Task<Void> task, final Promise promise) {
+    private void handleSignOutOrRevokeAccessTask(Task<Void> task, final Promise promise) {
         if (task.isSuccessful()) {
             promise.resolve(null);
         } else {
@@ -263,7 +261,7 @@ public class RNGoogleSigninModule extends ReactContextBaseJavaModule {
         _apiClient.revokeAccess()
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
-                    public void onComplete(@NonNull Task<Void> task) {
+                    public void onComplete(Task<Void> task) {
                         handleSignOutOrRevokeAccessTask(task, promise);
                     }
                 });
@@ -343,7 +341,7 @@ public class RNGoogleSigninModule extends ReactContextBaseJavaModule {
         }
 
         private void handleException(RNGoogleSigninModule moduleInstance, Exception cause,
-                                     WritableMap userProperties, @Nullable WritableMap settings) {
+                                     WritableMap userProperties, WritableMap settings) {
             boolean isRecoverable = cause instanceof UserRecoverableAuthException;
             if (isRecoverable) {
                 boolean shouldRecover = settings != null
